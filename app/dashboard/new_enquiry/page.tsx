@@ -9,36 +9,34 @@ interface Product {
 }
 
 interface EnquiryFormData {
-  userId:string,
+  userId: string;
   cloudProvider: string;
   region: string;
-  companyName:string;
+  companyName: string;
   products: Product[];
 }
 
 const Enquiry: React.FC = () => {
-
-  const router = useRouter()
+  const router = useRouter();
 
   const [formData, setFormData] = useState<EnquiryFormData>({
-    userId:"",
+    userId: "",
     cloudProvider: "",
     region: "",
     companyName: "",
     products: [{ name: "", term: "", users: "" }],
   });
 
-  useEffect(()=>{
-    setFormData((prev)=>{
+  useEffect(() => {
+    setFormData((prev:any) => {
       if (typeof localStorage !== "undefined") {
-
-      prev.userId=localStorage.getItem('userData')?.split(":")[2] as string
-      return {
-        ...prev
-      }}
-    })
-  
-  },[])
+        prev.userId = localStorage.getItem("userData")?.split(":")[2] as string;
+        return {
+          ...prev,
+        };
+      }
+    });
+  }, []);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
@@ -52,7 +50,7 @@ const Enquiry: React.FC = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const { name, value } = event.target;
-    const newProducts:any = [...formData.products];
+    const newProducts: any = [...formData.products];
     newProducts[index][name] = value;
     setFormData({ ...formData, products: newProducts });
   };
@@ -64,7 +62,6 @@ const Enquiry: React.FC = () => {
     });
   };
 
-  
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("[+]Selected form data ", JSON.stringify(formData));
@@ -83,10 +80,10 @@ const Enquiry: React.FC = () => {
             //route to login
           }
           //display error
-          alert(res.message)
+          alert(res.message);
         } else {
           //show entry success
-          router.push('list_enquiry')
+          router.push("list_enquiry");
         }
       });
   };
@@ -120,7 +117,7 @@ const Enquiry: React.FC = () => {
     },
   ];
 
-  const regions = ["Asia","US East (N. Virginia)" ];
+  const regions = ["Asia", "US East (N. Virginia)"];
 
   return (
     <div className="container mx-auto text-black w-auto">
@@ -215,7 +212,10 @@ const Enquiry: React.FC = () => {
             </div>
             <div className="flex flex-col gap-3">
               {formData.products.map((product, index) => (
-                <div  key={index} className="flex flex-col rounded-lg border border-gray  shadow-md">
+                <div
+                  key={index}
+                  className="flex flex-col rounded-lg border border-gray  shadow-md"
+                >
                   <div className="w-full bg-slate-400 broder rounded-t-lg border-black flex flex-col">
                     <div className="self-end p-3 ">
                       <button
@@ -244,7 +244,7 @@ const Enquiry: React.FC = () => {
                         id={`product-${index}-name`}
                         name="name"
                         value={product.name}
-                        onChange={(e:any) => handleProductChange(index, e)}
+                        onChange={(e: any) => handleProductChange(index, e)}
                         className="input rounded-lg border border-gray-300 mb-2 text-gray-700 block px-4 py-2 text-sm min-w-80"
                       >
                         <option
@@ -275,7 +275,7 @@ const Enquiry: React.FC = () => {
                             id={`product-${index}-term`}
                             name="term"
                             value={product.term}
-                            onChange={(e:any) => handleProductChange(index, e)}
+                            onChange={(e: any) => handleProductChange(index, e)}
                             className="input rounded-lg border border-gray-300 mb-2 text-gray-700 block px-4 py-2 text-sm "
                           >
                             <option
@@ -306,7 +306,7 @@ const Enquiry: React.FC = () => {
                             id={`product-${index}-Users`}
                             name="users"
                             value={product.users}
-                            onChange={(e:any) => handleProductChange(index, e)}
+                            onChange={(e: any) => handleProductChange(index, e)}
                             className="input rounded-lg border border-gray-300 mb-2 text-gray-700 block px-4 py-2 text-sm"
                           >
                             <option
@@ -339,7 +339,13 @@ const Enquiry: React.FC = () => {
           >
             Create
           </button>
-          <button onClick={()=>{router.back()}} type="button" className="btn btn-secondary">
+          <button
+            onClick={() => {
+              router.back();
+            }}
+            type="button"
+            className="btn btn-secondary"
+          >
             Cancel
           </button>
         </div>

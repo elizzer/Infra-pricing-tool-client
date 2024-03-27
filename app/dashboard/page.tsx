@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-  if (typeof localStorage !== "undefined") {
-    const userData = localStorage.getItem("userData")?.split(":");
-  }
+  const userData = localStorage && localStorage.getItem("userData")?.split(":");
 
   const router = useRouter();
 
