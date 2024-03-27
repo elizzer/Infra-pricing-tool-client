@@ -11,6 +11,8 @@ export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
+    if (typeof localStorage !== "undefined") {
+
     fetch(
       `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/user/inquiry/get?userId=${
         localStorage && localStorage.getItem("userData")?.split(":")[2]
@@ -23,6 +25,7 @@ export default function Home() {
       .catch((error) => {
         console.error("Error fetching data: ", error);
       });
+    }
   }, []);
 
   const deleteHandler = (id: string) => {

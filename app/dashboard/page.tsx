@@ -4,8 +4,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const userData = localStorage && localStorage.getItem("userData")?.split(":");
 
+  let userData
+  if (typeof localStorage !== "undefined") {
+
+   userData = localStorage.getItem("userData")?.split(":");
+  }
   const router = useRouter();
 
   function newEnquiry() {
