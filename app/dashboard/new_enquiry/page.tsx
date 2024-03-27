@@ -50,7 +50,7 @@ const Enquiry: React.FC = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const { name, value } = event.target;
-    const newProducts = [...formData.products];
+    const newProducts:any = [...formData.products];
     newProducts[index][name] = value;
     setFormData({ ...formData, products: newProducts });
   };
@@ -242,7 +242,7 @@ const Enquiry: React.FC = () => {
                         id={`product-${index}-name`}
                         name="name"
                         value={product.name}
-                        onChange={(e) => handleProductChange(index, e)}
+                        onChange={(e:any) => handleProductChange(index, e)}
                         className="input rounded-lg border border-gray-300 mb-2 text-gray-700 block px-4 py-2 text-sm min-w-80"
                       >
                         <option
@@ -273,7 +273,7 @@ const Enquiry: React.FC = () => {
                             id={`product-${index}-term`}
                             name="term"
                             value={product.term}
-                            onChange={(e) => handleProductChange(index, e)}
+                            onChange={(e:any) => handleProductChange(index, e)}
                             className="input rounded-lg border border-gray-300 mb-2 text-gray-700 block px-4 py-2 text-sm "
                           >
                             <option
@@ -304,7 +304,7 @@ const Enquiry: React.FC = () => {
                             id={`product-${index}-Users`}
                             name="users"
                             value={product.users}
-                            onChange={(e) => handleProductChange(index, e)}
+                            onChange={(e:any) => handleProductChange(index, e)}
                             className="input rounded-lg border border-gray-300 mb-2 text-gray-700 block px-4 py-2 text-sm"
                           >
                             <option
