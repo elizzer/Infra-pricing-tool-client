@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     fetch(
-      `http://localhost:5000/user/inquiry/get?userId=${
+      `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/user/inquiry/get?userId=${
         localStorage.getItem("userData")?.split(":")[2]
       }`
     )
@@ -28,7 +28,7 @@ export default function Home() {
   const deleteHandler = (id: string) => {
     console.log("[+]Delete action for inquiry ", id);
     console.log("[+]Selected inquiry ", selectedInquiry);
-    const url = `http://localhost:5000/user/inquiry/delete?InquiryId=${id}`;
+    const url = `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/user/inquiry/delete?InquiryId=${id}`;
     console.log("[+]Delete request url", url);
     fetch(url, {
       method: "GET",

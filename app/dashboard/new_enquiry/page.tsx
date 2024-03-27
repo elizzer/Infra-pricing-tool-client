@@ -67,7 +67,7 @@ const Enquiry: React.FC = () => {
     event.preventDefault();
     console.log("[+]Selected form data ", JSON.stringify(formData));
 
-    fetch("http://localhost:5000/user/inquiry/create", {
+    fetch(`${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/user/inquiry/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -213,7 +213,7 @@ const Enquiry: React.FC = () => {
             </div>
             <div className="flex flex-col gap-3">
               {formData.products.map((product, index) => (
-                <div className="flex flex-col rounded-lg border border-gray  shadow-md">
+                <div  key={index} className="flex flex-col rounded-lg border border-gray  shadow-md">
                   <div className="w-full bg-slate-400 broder rounded-t-lg border-black flex flex-col">
                     <div className="self-end p-3 ">
                       <button

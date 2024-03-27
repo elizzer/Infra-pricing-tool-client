@@ -27,7 +27,7 @@ const Home: React.FC<Props> = () => {
 
     if(code){
         console.log('[+]Code',code)
-        fetch(`http://localhost:5000/api/sessions/oauth/google?code=${code}`,{
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/api/sessions/oauth/google?code=${code}`,{
             method:"GET",
         }).then(res=>res.json())
         .then((res)=>{
@@ -62,7 +62,7 @@ const Home: React.FC<Props> = () => {
         
         //post request to server
         
-        fetch("http://localhost:5000/user/auth/login", {
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/user/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

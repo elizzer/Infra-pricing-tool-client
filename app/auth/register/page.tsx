@@ -57,7 +57,7 @@ const Register: React.FC<Props> = () => {
             name:name,
             password:password
         }
-        fetch('http://localhost:5000/user/auth/register',{
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/user/auth/register`,{
             method:"POST",
             headers:{
                 "Content-type":"Application/json"
