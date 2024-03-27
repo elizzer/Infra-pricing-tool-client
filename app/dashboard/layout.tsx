@@ -6,9 +6,11 @@ import { useRouter } from "next/navigation"
 
 export default function Layout({children}:any){
     const router=useRouter()
+    if (typeof localStorage !== "undefined") {
+
     if(!localStorage.getItem('userData')){
         router.push("/auth/login")
-    }
+    }}
     return(
         <div className="flex h-screen w-screen bg-white">
             <SideBar />

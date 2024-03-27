@@ -5,8 +5,11 @@ export default function TopBar() {
     const router = useRouter()
 
     function logoutHandler(){
+        if (typeof localStorage !== "undefined") {
+
         localStorage.removeItem('userData')
         router.push('/auth/login')
+        }
     }
 
   return (

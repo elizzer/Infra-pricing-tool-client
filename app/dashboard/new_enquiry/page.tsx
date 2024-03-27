@@ -30,10 +30,12 @@ const Enquiry: React.FC = () => {
 
   useEffect(()=>{
     setFormData((prev)=>{
+      if (typeof localStorage !== "undefined") {
+
       prev.userId=localStorage.getItem('userData')?.split(":")[2] as string
       return {
         ...prev
-      }
+      }}
     })
   
   },[])

@@ -1,15 +1,12 @@
-'use client'
-export default function Home(){
-    const params=new URLSearchParams(window.location.search)
-    console.log('[+]params ',window.location.search)
-    console.log('[+]params ',params.get('code'))
-    return(
-        <div>
-            google page
-        </div>
-    )
+"use client";
+export default function Home() {
+  if (typeof window !== "undefined") {
+    const params = new URLSearchParams(window.location.search);
+    console.log("[+]params ", window.location.search);
+    console.log("[+]params ", params.get("code"));
+  }
+  return <div>google page</div>;
 }
-
 
 //To-Do
 // logout

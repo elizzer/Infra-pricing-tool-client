@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     fetch(
       `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/user/inquiry/get?userId=${
-        localStorage.getItem("userData")?.split(":")[2]
+        localStorage && localStorage.getItem("userData")?.split(":")[2]
       }`
     )
       .then((response) => response.json())
@@ -37,11 +37,13 @@ export default function Home() {
       .then((res) => {
         console.log("[+]Delete response ", res);
         closeModal();
-        window.location.reload();
+        if (typeof window !== "undefined") {
+          window.location.reload();
+        }
       });
   };
 
-  const openModal = (inquiry:any) => {
+  const openModal = (inquiry: any) => {
     setSelectedInquiry(inquiry);
     setModalOpen(true);
   };
@@ -89,7 +91,7 @@ export default function Home() {
             </tr>
           </thead>
           <tbody className="text-black">
-            {inquiries.map((inquiry:any) => (
+            {inquiries.map((inquiry: any) => (
               <tr key={inquiry._id} className="even:bg-slate-100 text-center">
                 <td className="border border-slate-300 px-4 py-2">
                   {inquiry.cloudProvider}
@@ -102,7 +104,7 @@ export default function Home() {
                 </td>
                 <td className="border border-slate-300 px-4 py-2">
                   <div className="flex flex-col">
-                    {inquiry.products.map((product:any, index:any) => (
+                    {inquiry.products.map((product: any, index: any) => (
                       <div key={index} className="mb-2 flex gap-6">
                         <div>
                           <span className="font-semibold">Name:</span>{" "}
@@ -153,7 +155,7 @@ export default function Home() {
             <div className="mt-8">
               <h2 className="font-semibold mb-4">Products Details</h2>
               {selectedInquiry &&
-                selectedInquiry.products.map((product:any, index:any) => (
+                selectedInquiry.products.map((product: any, index: any) => (
                   <div key={index} className="flex justify-between">
                     <div>
                       {product.name} for {product.term}

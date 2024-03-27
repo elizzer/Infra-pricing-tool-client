@@ -22,8 +22,11 @@ const Home: React.FC<Props> = () => {
         setGoogleOauthURL(getOauthURL())
     },[])
 
-    const params=new URLSearchParams(window.location.search)
-    const code=params.get('code')
+    if (typeof window !== "undefined"){
+
+        const params=new URLSearchParams(window.location.search)
+        const code=params.get('code')
+    }
 
     if(code){
         console.log('[+]Code',code)
