@@ -41,7 +41,7 @@ export default function Home() {
       });
   };
 
-  const openModal = (inquiry) => {
+  const openModal = (inquiry:any) => {
     setSelectedInquiry(inquiry);
     setModalOpen(true);
   };
