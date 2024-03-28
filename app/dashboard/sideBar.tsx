@@ -8,7 +8,7 @@ export default function SideBar() {
         <span>=</span>
       </div>
       <div className="text-xl font-semibold">
-        <button onClick={()=>{router.push("/dashboard")}}> A </button>
+        <button onClick={()=>{router.push("/dashboard")}}></button>
       </div>
     </div>
   );
