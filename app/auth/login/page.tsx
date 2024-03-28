@@ -19,34 +19,34 @@ const Home: React.FC<Props> = () => {
 
   useEffect(() => {
     setGoogleOauthURL(getOauthURL());
-  }, []);
-
-  if (typeof window !== "undefined") {
+    
+    if (typeof window !== "undefined") {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
 
     if (code) {
-      console.log("[+]Code", code);
-      fetch(
+        console.log("[+]Code", code);
+        fetch(
         `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/api/sessions/oauth/google?code=${code}`,
         {
-          method: "GET",
+            method: "GET",
         }
-      )
+        )
         .then((res) => res.json())
         .then((res) => {
-          console.log("[+]Google signin in log ", res);
+            console.log("[+]Google signin in log ", res);
 
-          if (!res.error) {
+            if (!res.error) {
             localStorage.setItem(
-              "userData",
-              `${res.user.email}:${res.user.name}:${res.user._id}`
+                "userData",
+                `${res.user.email}:${res.user.name}:${res.user._id}`
             );
             router.push("/dashboard");
-          }
+            }
         });
     }
-  }
+    }
+  }, []);
 
   function loginHandler(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();

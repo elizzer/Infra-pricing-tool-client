@@ -11,6 +11,7 @@ export default function Layout({children}:any){
     if(!localStorage.getItem('userData')){
         router.push("/auth/login")
     }}
+    
     return(
         <div className="flex h-screen w-screen bg-white">
             <SideBar />
